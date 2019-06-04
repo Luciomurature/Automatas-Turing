@@ -2,14 +2,17 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script type="text/javascript" src="automata.js"></script>
+   
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/viz.js@1.8.1/viz.js" type="javascript/worker"></script>
+    <script src="https://unpkg.com/d3-graphviz@2.6.1/build/d3-graphviz.js"></script>
 </head>
 <title>Lenguajes Formales y Automatas</title>
 <div>
 <input type="file" id="jsonFile" name="jsonFile" onchange="datos()">
 </div>
 <input id="entrada"><button onClick="init()">Go nigga!</button>
-<div>
-Aca va el grafico bro xdxd
+<div id="graph">
 
 </div>
 <body>
