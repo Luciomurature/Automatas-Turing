@@ -6,7 +6,12 @@ let maquina = require('./aut1.json');
 
 
 let ingreso = "abababababababbbbbbbbbbbb";
+
 let estadoActual = maquina.estadoInicial;
+
+if(maquina.maquina == "AFD"){
+
+
 
 // hacer chequeo de alfabeto
 
@@ -26,5 +31,40 @@ for(let i = 0; i < ingreso.length; i++){
             break;
         }
     }
+
+}
+
+if(maquina.maquina == "AP"){
+    
+    class pila{
+
+
+        constructor(){
+            this.items = [];
+        }
+        push(element){ 
+            this.items.push(element); 
+        } 
+        pop() { 
+
+            if (this.items.length == 0) 
+            return "Underflow"; 
+            return this.items.pop(); 
+        } 
+
+        isEmpty() { 
+            return this.items.length == 0; 
+        } 
+
+        peek(){ 
+        return this.items[this.items.length - 1]; 
+        } 
+    }
+    
+
+
+    
+}
+
 
 
