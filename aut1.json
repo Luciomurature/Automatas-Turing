@@ -1,5 +1,5 @@
 {
-    "maquina" : "AFD",
+    "tipo" : "AFD",
     "alfabeto": [ "a", "b" ],
     "estadoInicial": "q0",
     "estados": ["q0", "q1", "q2"],

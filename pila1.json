@@ -1,5 +1,5 @@
 {
-    "maquina" : "AP",
+    "tipo" : "AP",
     "alfabeto": [ "0", "1" ],
     "alfabetoSimbolosEnPila": ["0", "1"],
     "simboloVacio": ["#"],
@@ -9,23 +9,16 @@
     "transiciones": [
                         {
                            "actual": "q0",
-                           "valor": "L",
-                           "tope": "L",
-                           "apilar": "#",
-                           "proximo": "q0"
-                        },
-                                                {
-                           "actual": "q0",
                            "valor": "0",
                            "tope": "#",
-                           "apilar": "#0",
+                           "apilar": "0",
                            "proximo": "q1"
                         },
                         {
                             "actual": "q1",
                             "valor": "0",
                             "tope": "0",
-                            "apilar": "00",
+                            "apilar": "0",
                             "proximo": "q1"
                         },
                         {
@@ -44,13 +37,13 @@
                             "actual": "q2",
                             "valor": "1",
                             "tope": "#",
-                            "apilar": "#1",
+                            "apilar": "1",
                             "proximo": "q3"
                         },                      {
                             "actual": "q3",
                             "valor": "1",
                             "tope": "1",
-                            "apilar": "11",
+                            "apilar": "1",
                             "proximo": "q3"
                         },                      {
                             "actual": "q3",
