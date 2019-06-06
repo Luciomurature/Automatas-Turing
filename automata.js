@@ -15,14 +15,11 @@ function init(){
 
 
     let ingreso = document.getElementById('entrada').value;
+    let estadoActual = maquina.estadoInicial;
 
 
 
     if(maquina.tipo == "AFD"){
-
-
-        let estadoActual = maquina.estadoInicial;
-
 
         for(let i = 0; i < ingreso.length; i++){
             for(let j = 0; j < maquina.transiciones.length; j++){
@@ -30,17 +27,6 @@ function init(){
                     estadoActual = maquina.transiciones[j].proximo;
                     break;
                 }
-            }
-        }
-
-        for(let i = 0; i < maquina.estadosSalida.length; i++){
-            if(estadoActual == maquina.estadosSalida[i]){
-                alert("Cadena correcta.");
-                break;
-            }
-            if(estadoActual != maquina.estadosSalida[i] && maquina.estadosSalida[i] == maquina.estadosSalida[maquina.estadosSalida.length - 1]){
-                alert("Cadena Incorrecta");
-                return;
             }
         }
 
@@ -58,55 +44,61 @@ function init(){
                 this.items.push(element);
             }
             pop() {
-
+        
                 if (this.items.length == 0)
                     return "Underflow";
                 return this.items.pop();
             }
-
+        
             isEmpty() {
                 return this.items.length == 0;
             }
-
+        
             peek(){
                 return this.items[this.items.length - 1];
             }
         }
-
+        
         let pila = new Pila();
         pila.push(maquina.simboloVacio);
-        let estadoActual = maquina.estadoInicial;
-
-
+        
+        
         for(let i = 0; i < ingreso.length; i++){
             for(let j = 0; j < maquina.transiciones.length; j++){
                 if(maquina.transiciones[j].actual == estadoActual && maquina.transiciones[j].tope == pila.peek() && ingreso[i] == maquina.transiciones[j].valor ){
+                    estadoActual = maquina.transiciones[j].proximo;
                     if(maquina.transiciones[j].apilar == "L"){
                         pila.pop();
-                        if(pila.length == 1 && i == ingreso.lenght-1){  //si tiene solo el simbolo de vacio  y la letra es la ultima   
-                            for(let k = 0; k < maquina.transiciones.length; k++){
-                                if(maquina.transiciones[k].valor == "L"){
-                                    estadoActual = maquina.transiciones[k].proximo;
-                                    break;
+                        if(pila.items.length == 1){
+                            if(i == ingreso.length - 1){
+                                for(let k = 0; k < maquina.transiciones.length; k++){
+                                    if(maquina.transiciones[k].valor == "L"){
+                                        estadoActual = maquina.transiciones[k].proximo;
+                                        break;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else{
+                    }else{
                         pila.push(maquina.transiciones[j].apilar);
                     }
-                    estadoActual = maquina.transiciones[j].proximo;
                     break;
-                }
             }
         }
-
-        if(pila.isEmpty()){
-            alert("ok");
+        
         }
-
+        
+     
 
     }
-
-
+    for(let i = 0; i < maquina.estadosSalida.length; i++){
+        if(estadoActual == maquina.estadosSalida[i]){
+            alert("Cadena correcta");
+            break;
+        }
+        if(estadoActual != maquina.estadosSalida[i] && maquina.estadosSalida[i] == maquina.estadosSalida[maquina.estadosSalida.length - 1]){
+            alert("Cadena incorrecta");
+            break;
+        }
+    }
 }
