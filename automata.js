@@ -44,25 +44,25 @@ function init(){
                 this.items.push(element);
             }
             pop() {
-        
+
                 if (this.items.length == 0)
                     return "Underflow";
                 return this.items.pop();
             }
-        
+
             isEmpty() {
                 return this.items.length == 0;
             }
-        
+
             peek(){
                 return this.items[this.items.length - 1];
             }
         }
-        
+
         let pila = new Pila();
         pila.push(maquina.simboloVacio);
-        
-        
+
+
         for(let i = 0; i < ingreso.length; i++){
             for(let j = 0; j < maquina.transiciones.length; j++){
                 if(maquina.transiciones[j].actual == estadoActual && maquina.transiciones[j].tope == pila.peek() && ingreso[i] == maquina.transiciones[j].valor ){
@@ -83,12 +83,12 @@ function init(){
                         pila.push(maquina.transiciones[j].apilar);
                     }
                     break;
+                }
             }
+
         }
-        
-        }
-        
-     
+
+
 
     }
     for(let i = 0; i < maquina.estadosSalida.length; i++){
@@ -96,9 +96,14 @@ function init(){
             alert("Cadena correcta");
             break;
         }
-        if(estadoActual != maquina.estadosSalida[i] && maquina.estadosSalida[i] == maquina.estadosSalida[maquina.estadosSalida.length - 1]){
+        if(estadoActual != maquina.estadosSalida[i] && maquina.estadosSalida[i] == maquina.estadosSalida[maquina.estadosSalida.length - 1]){ //si mi estado no es un estado de salida, y estoy en el ultimo estado de salida, entonces chau
             alert("Cadena incorrecta");
             break;
         }
     }
+
+
+    
 }
+
+
