@@ -1,3 +1,5 @@
+
+
 function datos(e) {
     var file = jsonFile.files[0];
     var reader = new FileReader();
@@ -106,4 +108,11 @@ function init(){
     
 }
 
+function setup(){
+    let myCanvas = createCanvas(650,650);
+}
 
+
+function draw(){
+   let q0;
+}
