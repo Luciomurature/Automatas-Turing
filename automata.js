@@ -1,5 +1,7 @@
 
 
+
+
 function datos(e) {
     var file = jsonFile.files[0];
     var reader = new FileReader();
@@ -12,12 +14,26 @@ function datos(e) {
 
 };
 
+//GLOBALS
+
+
+ let estadoActual;
+
+
+
 
 function init(){
 
 
+    
+
+
     let ingreso = document.getElementById('entrada').value;
-    let estadoActual = maquina.estadoInicial;
+    estadoActual = maquina.estadoInicial; 
+
+
+
+    
 
 
 
@@ -95,11 +111,11 @@ function init(){
     }
     for(let i = 0; i < maquina.estadosSalida.length; i++){
         if(estadoActual == maquina.estadosSalida[i]){
-            alert("Cadena correcta");
+            console.log("Cadena correcta");
             break;
         }
         if(estadoActual != maquina.estadosSalida[i] && maquina.estadosSalida[i] == maquina.estadosSalida[maquina.estadosSalida.length - 1]){ //si mi estado no es un estado de salida, y estoy en el ultimo estado de salida, entonces chau
-            alert("Cadena incorrecta");
+            console.log("Cadena incorrecta");
             break;
         }
     }
@@ -108,11 +124,44 @@ function init(){
     
 }
 
+
+
 function setup(){
-    let myCanvas = createCanvas(650,650);
+    let myCanvas = createCanvas(1000,1000);
+    noLoop();
 }
 
 
 function draw(){
-   let q0;
+    let dist = 150;
+    let circles = [];
+
+    for(let i = 0 ; i < maquina.estados.length; i++, dist += 150){
+         if(1 == i){
+             line(50, 80, 117.5, 80); //linea de flecha
+             line(110, 90, 117.5, 80); //punta de flecha desde arriba
+             line(110, 70, 117.5, 80); //punta de flecha desde abajo
+         }
+        smooth();
+        circles[i] = ellipse(dist, 80, 65, 65); //estado
+
+
+        text(maquina.estados[i], dist-8, 83); // nombre
+
+    
+        //transiciones
+        if(maquina.tipo == "AFD"){
+        //stuff
+        }
+        if(maquina.tipo == "AP"){
+            //other stuff
+        }
+    }
+ }
+ 
+
+function gfx(){
+    setup();
+    draw();
+    loop();
 }
