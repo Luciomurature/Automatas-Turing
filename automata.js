@@ -29,7 +29,15 @@ function init(){
 
 
     let ingreso = document.getElementById('entrada').value;
-    estadoActual = maquina.estadoInicial; 
+    if(!verificarAlfabeto()){
+        return alert("Cadena erronea en alfabeto");
+    }
+
+    if(!verificarTransiciones()){
+        return alert("Hubo un problema con las transiciones de la maquina, verificar .json por favor.");
+    }
+
+    estadoActual = maquina.estadoInicial;
 
 
 
@@ -109,6 +117,19 @@ function init(){
 
 
     }
+    resultado();
+
+    
+}
+
+function verificarAlfabeto(){
+}
+
+function verificarTransiciones(){
+}
+
+
+function resultado(){
     for(let i = 0; i < maquina.estadosSalida.length; i++){
         if(estadoActual == maquina.estadosSalida[i]){
             console.log("Cadena correcta");
@@ -120,10 +141,7 @@ function init(){
         }
     }
 
-
-    
 }
-
 
 
 function setup(){
