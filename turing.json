@@ -1,0 +1,53 @@
+{
+    "tipo" : "MT",
+    "alfabeto": [ "0", "1" ],
+    "alfabetoSimbolosEnCinta": ["0", "1", "P", "I"],
+    "blanco": ["b"],
+    "estadoInicial": "q0",
+    "estados": ["q0", "q1", "q2"],
+    "estadosSalida": ["q2"],
+    "cinta": ["b", "b", "b", "1", "0", "1", "1", "1", "b", "b", "b"],
+    "inicioCabezal": 3,
+    "transiciones": [
+                        {
+                           "actual": "q0",
+                           "leo": "0",
+                           "escribo": "0",
+                           "movimiento": "D",
+                           "proximo": "q0"
+                        },
+                        {
+                           "actual": "q0",
+                           "leo": "1",
+                           "escribo": "1",
+                           "movimiento": "D",
+                           "proximo": "q1"
+                          
+                        },
+                        {
+                            "actual": "q0",
+                           "leo": "b",
+                           "escribo": "P",
+                           "movimiento": "P",
+                           "proximo": "q2"
+                        },                      {
+                            "actual": "q1",
+                           "leo": "1",
+                           "escribo": "1",
+                           "movimiento": "D",
+                           "proximo": "q0"
+                        },                      {
+                            "actual": "q1",
+                           "leo": "0",
+                           "escribo": "0",
+                           "movimiento": "D",
+                           "proximo": "q1"
+                        },                      {
+                            "actual": "q1",
+                           "leo": "b",
+                           "escribo": "I",
+                           "movimiento": "P",
+                           "proximo": "q2"
+                        }
+                     ]
+}
