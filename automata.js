@@ -146,7 +146,7 @@ function init(){
                     estadoActual = maquina.transiciones[i].proximo;
                 }
             }
-        }while(estadoActual != maquina.estadosSalida[0]);
+        }while(estadoActual != maquina.estadoSalidaTuring);
             console.log(cinta);
         }
 
