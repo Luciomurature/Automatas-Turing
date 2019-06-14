@@ -18,6 +18,7 @@ function datos(e) {
 
 
  let estadoActual;
+ let estadosPasados = []; //para hacer la animacion
 
 
 
@@ -29,13 +30,15 @@ function init(){
 
 
     let ingreso = document.getElementById('entrada').value;
-    if(!verificarAlfabeto()){
+    /*if(!verificarAlfabeto()){
         return alert("Cadena erronea en alfabeto");
     }
 
     if(!verificarTransiciones()){
         return alert("Hubo un problema con las transiciones de la maquina, verificar .json por favor.");
     }
+
+    */
 
     estadoActual = maquina.estadoInicial;
 
@@ -51,6 +54,7 @@ function init(){
             for(let j = 0; j < maquina.transiciones.length; j++){
                 if(maquina.transiciones[j].actual == estadoActual && maquina.transiciones[j].valor == ingreso[i]){
                     estadoActual = maquina.transiciones[j].proximo;
+                    estadosPasados.push(estadoActual);
                     break;
                 }
             }
@@ -93,6 +97,7 @@ function init(){
             for(let j = 0; j < maquina.transiciones.length; j++){
                 if(maquina.transiciones[j].actual == estadoActual && maquina.transiciones[j].tope == pila.peek() && ingreso[i] == maquina.transiciones[j].valor ){
                     estadoActual = maquina.transiciones[j].proximo;
+                    estadosPasados.push(estadoActual);
                     if(maquina.transiciones[j].apilar == "L"){
                         pila.pop();
                         if(pila.items.length == 1){
@@ -100,6 +105,7 @@ function init(){
                                 for(let k = 0; k < maquina.transiciones.length; k++){
                                     if(maquina.transiciones[k].valor == "L"){
                                         estadoActual = maquina.transiciones[k].proximo;
+                                        estadosPasados.push(estadoActual);
                                         break;
                                     }
                                 }
@@ -118,6 +124,7 @@ function init(){
 
     }
     resultado();
+    console.log(estadosPasados);
 
     
 }
@@ -157,14 +164,22 @@ function draw(){
     for(let i = 0 ; i < maquina.estados.length; i++, dist += 150){
          if(1 == i){
              line(50, 80, 117.5, 80); //linea de flecha
-             line(110, 90, 117.5, 80); //punta de flecha desde arriba
-             line(110, 70, 117.5, 80); //punta de flecha desde abajo
+             line(100, 88, 117.5, 80); //punta de flecha desde arriba
+             line(100, 72, 117.5, 80); //punta de flecha desde abajo
          }
-        smooth();
-        circles[i] = ellipse(dist, 80, 65, 65); //estado
+        for(let j = 0; j < maquina.estadosSalida.length; j++){
+            if(maquina.estados[i] == maquina.estadosSalida[j]){
+                ellipse(dist, 80, 85, 85);
+                circles[i] = ellipse(dist, 80, 65, 65);
+            }else{
+                circles[i] = ellipse(dist, 80, 65, 65); //estado
+            }
+        }
 
 
         text(maquina.estados[i], dist-8, 83); // nombre
+
+        
 
     
         //transiciones
@@ -175,11 +190,15 @@ function draw(){
             //other stuff
         }
     }
+
  }
  
 
 function gfx(){
     setup();
+    clear();
     draw();
-    loop();
+
+    
 }
+
