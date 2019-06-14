@@ -5,7 +5,7 @@
     "blanco": ["b"],
     "estadoInicial": "q0",
     "estados": ["q0", "q1", "q2"],
-    "estadosSalida": ["q2"],
+    "estadoSalidaTuring": ["q2"],
     "cinta": ["b", "b", "b", "1", "0", "1", "1", "1", "b", "b", "b"],
     "inicioCabezal": 3,
     "transiciones": [
