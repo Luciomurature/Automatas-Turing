@@ -19,6 +19,7 @@ function datos(e) {
 
  let estadoActual;
  let estadosPasados = []; //para hacer la animacion
+ let ingreso;
 
 
 
@@ -29,16 +30,15 @@ function init(){
     
 
 
-    let ingreso = document.getElementById('entrada').value;
-    /*if(!verificarAlfabeto()){
+    ingreso = document.getElementById('entrada').value;
+    if(!verificarAlfabeto()){
         return alert("Cadena erronea en alfabeto");
     }
 
-    if(!verificarTransiciones()){
+    /*if(!verificarTransiciones()){
         return alert("Hubo un problema con las transiciones de la maquina, verificar .json por favor.");
-    }
+    }*/
 
-    */
 
     estadoActual = maquina.estadoInicial;
 
@@ -154,6 +154,22 @@ function init(){
 }
 
 function verificarAlfabeto(){
+    let verificacion = false;
+
+    for(let i = 0; i < ingreso.length; i++){
+        verificacion = false;
+        for(let j = 0; j < maquina.alfabeto.length; j++){
+            if(ingreso[i] == maquina.alfabeto[j]){
+                verificacion = true;
+                break;
+            }
+            if(ingreso[i] != maquina.alfabeto[j] && maquina.alfabeto[j] == maquina.alfabeto[maquina.alfabeto.length -1]){
+                return false;
+            }
+        }
+    }
+
+    return verificacion;
 }
 
 function verificarTransiciones(){
