@@ -29,16 +29,12 @@ function init(){
 
     
 
-
-    ingreso = document.getElementById('entrada').value;
-    if(!verificarAlfabeto()){
-        return alert("Cadena erronea en alfabeto");
+    if(maquina.tipo != "MT"){
+        ingreso = document.getElementById('entrada').value;
+        if(!verificarAlfabeto()){
+            return alert("Cadena erronea en alfabeto");
+        }
     }
-
-    /*if(!verificarTransiciones()){
-        return alert("Hubo un problema con las transiciones de la maquina, verificar .json por favor.");
-    }*/
-
 
     estadoActual = maquina.estadoInicial;
 
@@ -147,7 +143,7 @@ function init(){
                 }
             }
         }while(estadoActual != maquina.estadoSalidaTuring);
-            console.log(cinta);
+            document.getElementById("results").innerHTML =  cinta;
         }
 
     
@@ -172,18 +168,14 @@ function verificarAlfabeto(){
     return verificacion;
 }
 
-function verificarTransiciones(){
-}
-
-
 function resultado(){
     for(let i = 0; i < maquina.estadosSalida.length; i++){
         if(estadoActual == maquina.estadosSalida[i]){
-            console.log("Cadena correcta");
+            document.getElementById("results").innerHTML =  "Cadena correcta";
             break;
         }
         if(estadoActual != maquina.estadosSalida[i] && maquina.estadosSalida[i] == maquina.estadosSalida[maquina.estadosSalida.length - 1]){ //si mi estado no es un estado de salida, y estoy en el ultimo estado de salida, entonces chau
-            console.log("Cadena incorrecta");
+            document.getElementById("results").innerHTML =  "Cadena incorrecta";
             break;
         }
     }
@@ -207,6 +199,17 @@ function draw(){
              line(100, 88, 117.5, 80); //punta de flecha desde arriba
              line(100, 72, 117.5, 80); //punta de flecha desde abajo
          }
+        if(maquina.tipo == "MT"){
+            for(let j = 0; j < maquina.estadoSalidaTuring.length; j++){
+                if(maquina.estados[i] == maquina.estadoSalidaTuring[j]){
+                    ellipse(dist, 80, 85, 85);
+                    circles[i] = ellipse(dist, 80, 65, 65);
+                }else{
+                    circles[i] = ellipse(dist, 80, 65, 65); //estado
+                }
+            }
+
+        }else{
         for(let j = 0; j < maquina.estadosSalida.length; j++){
             if(maquina.estados[i] == maquina.estadosSalida[j]){
                 ellipse(dist, 80, 85, 85);
@@ -215,6 +218,7 @@ function draw(){
                 circles[i] = ellipse(dist, 80, 65, 65); //estado
             }
         }
+    }
 
 
         text(maquina.estados[i], dist-8, 83); // nombre
@@ -241,4 +245,6 @@ function gfx(){
 
     
 }
+
+
 
